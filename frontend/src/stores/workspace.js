@@ -18,5 +18,17 @@ export const workspace = {
   deliveries: () => call('/deliveries'),
   schedule: data => call('/schedules', data),
   disable: id => call(`/schedules/${id}/disable`, {}),
+  marketDays: (marketId, marketDay) => {
+    const params = new URLSearchParams();
+    if (marketId) params.set('market_id', marketId);
+    if (marketDay) params.set('market_day', marketDay);
+    const query = params.toString();
+    return call(`/reconciliation/market-days${query ? `?${query}` : ''}`);
+  },
+  truck: id => call(`/reconciliation/trucks/${encodeURIComponent(id)}`),
+  anomalies: () => call('/reconciliation/anomalies'),
+  correctionBatches: () => call('/reconciliation/batches'),
+  importTruckEvents: events => call('/reconciliation/events', {events}),
+  submitCorrection: data => call('/reconciliation/corrections', data),
   download: (path, filename) => saveFile(path, session.token, filename),
 };

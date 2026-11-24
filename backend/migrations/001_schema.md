@@ -8,3 +8,5 @@
 - `schedules` 保存定时计划和下一到期时间。
 - `deliveries` 保存站内分发回执，每次运行最多一个回执。
 - `audit_events` 记录登录、数据入库、运行、复核和报表分发动作。
+- `truck_events` 门岗入队/开卸与调度交接单的不可变事件；补报事件另起新行（`source=correction`），原始行不覆盖、不删除。
+- `correction_batches` 补报批次、涉事车次、原归属到新归属的一次性切换清单及拒绝原因；批次按 `batch_seq` 顺序生效，晚到旧批拒绝。

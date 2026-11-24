@@ -6,8 +6,10 @@ from scripts.seed_demo import seed
 from src.config.database import Base, engine
 from src.config.settings import SEED_DEMO
 from src.domain.spec import SPEC
+# 导入全部模型，保证 Base.metadata.create_all 建出车次对账表。
+from src.models import identity, jobs, source, trucks  # noqa: F401
 from src.middlewares import errors, headers, rate
-from src.routes import distribution, identity, registry, runs
+from src.routes import distribution, identity, registry, runs, trucks
 from src.utils.wakeup import broker
 
 log = logging.getLogger(__name__)
@@ -29,7 +31,7 @@ app = FastAPI(title=SPEC['title'], lifespan=lifespan)
 errors.install(app)
 headers.install(app)
 rate.install(app)
-for module in (identity, registry, runs):
+for module in (identity, registry, runs, trucks):
     app.include_router(module.router)
 if SPEC.get('scheduled'):
     app.include_router(distribution.router)

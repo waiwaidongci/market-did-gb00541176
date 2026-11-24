@@ -141,3 +141,9 @@ body[data-page="results"] .main > div > .panel { margin-top:1rem; }
   .account p { display:none; }
 }
 @media(prefers-reduced-motion:reduce) { *,*::after,*::before { transition:none!important; animation:none!important; } }
+
+/* 车次对账：归属切换清单与车辆回查 */
+.switch-list { margin: 0; padding-left: 1.1rem; font-size: .86rem; }
+.switch-list li + li { margin-top: .3rem; }
+.panel h3 { margin-top: .9rem; padding-top: .8rem; border-top: 1px solid var(--line); }
+.method-list { color: var(--muted); }
